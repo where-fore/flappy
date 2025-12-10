@@ -2,7 +2,7 @@ extends Node2D
 
 @export var obstacle_scene: PackedScene
 
-var obstacle_spawn_interval = 1.5
+var obstacle_spawn_interval = 1.75
 @onready var obstacle_spawn_timer = 0.75
 var vertical_screen_size = 720
 var bounding_factor = 0.85
