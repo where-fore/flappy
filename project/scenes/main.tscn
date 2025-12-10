@@ -25,5 +25,7 @@ obstacle_scene = ExtResource("5_tefeu")
 
 [node name="HUD" parent="." instance=ExtResource("6_tefeu")]
 
+[connection signal="player_died" from="." to="Obstacle Spawner" method="_on_main_player_died"]
 [connection signal="player_died" from="." to="HUD" method="_on_main_player_died"]
+[connection signal="player_respawned" from="." to="Obstacle Spawner" method="_on_main_player_respawned"]
 [connection signal="player_scored" from="." to="HUD" method="_on_main_player_scored"]

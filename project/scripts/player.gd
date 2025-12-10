@@ -3,7 +3,7 @@ extends RigidBody2D
 signal destroyed
 signal scored
 
-var spawn_pause_time = 0.25
+var spawn_pause_time = 0.5
 @onready var original_modulate = $Sprite2D.modulate
 
 var thrust = Vector2(0, -800)
@@ -17,9 +17,23 @@ var rotation_tween = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	freeze = true
-	$Sprite2D.modulate = Color(0,0,1,1)
+	
+	var tween = create_tween()
+	var target = self
+	var target_property = "modulate"
+	var duration = spawn_pause_time/4
+	var original_property = self.modulate
+	var end_property = Color(1,1,1,0.25)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(target, target_property, end_property, duration)
+	tween.tween_property(target, target_property, original_property, duration)
+	tween.set_loops() #infinite
+	
 	await get_tree().create_timer(spawn_pause_time).timeout
-	$Sprite2D.modulate = original_modulate
+	tween.kill()
+	self.modulate = original_property
+	
 	freeze = false
 
 

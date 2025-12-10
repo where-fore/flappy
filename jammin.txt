@@ -6,13 +6,21 @@ required
 ---------------
 have some sort of speed up and/or high-score-time-survived
 
+
+
+
 bugs:
 	sometimes get stuck on the staticbody bottom, seems like inbuilt physics quirk. maybe have the bottom bounce?
 ---------------
 
 
 
+could grab parent of each obstacle
+	this means the method gets called twice
+	unless i somehow remove duplicates
 
+could group parents permantently as "obstacle container"
+	seems unnecessary for one function?
 
 
 
@@ -40,6 +48,15 @@ have game zoom out or in as you progress?
 
 polish
 ---------------
+better player movement
+	can clamp y velocity instead of the anti-bounce (and so you can have aggressive gravity without insane dipping)
+	lots of other tweaking, probably watch a video or browse all my available levers and pull them all
+
+better respawn
+	have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
+	have the player grow in instead of just appearing
+
+
 have a background :D maybe noise?
 
 have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow

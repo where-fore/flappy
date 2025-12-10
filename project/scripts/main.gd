@@ -2,10 +2,13 @@ extends Node2D
 
 signal player_scored
 signal player_died
+signal player_respawned
 @export var player_scene: PackedScene
 
-var player_respawn_time = 4
+var player_respawn_time = 2
 var player_first_spawn_time = 0.25
+
+var should_wait_for_obstacles_to_clear = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,11 +20,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if should_wait_for_obstacles_to_clear:
+		if get_tree().get_node_count_in_group("Obstacle") <= 0:
+			should_wait_for_obstacles_to_clear = false
+			spawn_player(0.25)
 
 
 func _on_player_destroyed() -> void:
-	spawn_player(player_respawn_time)
+	should_wait_for_obstacles_to_clear = true
 	emit_signal("player_died")
 
 
@@ -37,3 +43,4 @@ func spawn_player(wait_time:float = 0):
 	call_deferred("add_child", player)
 	player.connect("destroyed", _on_player_destroyed)
 	player.connect("scored", _on_player_scored)
+	emit_signal("player_respawned")
