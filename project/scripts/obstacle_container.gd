@@ -24,4 +24,5 @@ func _on_pass_check_area_body_entered(body: Node2D) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(1).timeout #let it get away a bit? hacky
 	queue_free()

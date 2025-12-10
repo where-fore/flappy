@@ -9,9 +9,11 @@ size = Vector2(17, 910.5)
 [node name="Obstacle Container" type="Node2D"]
 script = ExtResource("1_mnllb")
 
-[node name="Obstacle (Top)" parent="." instance=ExtResource("1_7ffe5")]
-
 [node name="Obstacle (Bottom)" parent="." instance=ExtResource("1_7ffe5")]
+position = Vector2(0, 720)
+
+[node name="Obstacle (Top)" parent="." instance=ExtResource("1_7ffe5")]
+position = Vector2(0, -720)
 rotation = 3.1415927
 
 [node name="Pass Check Area" type="Area2D" parent="."]

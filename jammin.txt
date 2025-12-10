@@ -10,6 +10,11 @@ bugs:
 
 -character controller
 	tried holding space and it didn't feel right - would rather a meaty jump on press
+		maybe have it do a smaller impulse if still holding during cooldown - like celeste/mario jump-hold-height
+	if i'm rising, my press moves me very far, and if i'm falling it doesn't go far at all
+	
+	still too floaty going upwards
+	
 	
 	currently fighting gravity feels bad - pressing space while falling does little when it feels like it should do a lot, and to just go straight requires upkeep(this can feel good but not always)
 	
@@ -51,6 +56,7 @@ better player movement
 	-lots of other tweaking, probably watch a video or browse all my available levers and pull them all
 	-check in on player size, it feels a little big at the moment?
 	-check in on controls, maybe there should be a cooldown or something on flaps
+	-have that fire tween in and out, size and/or alpha
 	
 better respawn
 	have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)

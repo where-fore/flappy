@@ -25,6 +25,41 @@ obstacle_scene = ExtResource("5_tefeu")
 
 [node name="HUD" parent="." instance=ExtResource("6_tefeu")]
 
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Yellow" type="ColorRect" parent="Background/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8666667, 0.6313726, 0.36862746, 1)
+
+[node name="Orange" type="ColorRect" parent="Background/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.0
+anchor_top = -0.5
+anchor_right = 2.0
+anchor_bottom = 0.5
+offset_left = -267.99994
+offset_top = 324.0
+offset_right = -268.0
+offset_bottom = 324.0
+grow_horizontal = 2
+rotation = -0.2617994
+color = Color(0.7372549, 0.42352942, 0.14509805, 1)
+
 [connection signal="player_died" from="." to="Obstacle Spawner" method="_on_main_player_died"]
 [connection signal="player_died" from="." to="HUD" method="_on_main_player_died"]
 [connection signal="player_respawned" from="." to="Obstacle Spawner" method="_on_main_player_respawned"]
