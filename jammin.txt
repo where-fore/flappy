@@ -1,0 +1,7 @@
+flappy bird jam
+
+timer every hour or so, write what i did, and stretch a bit
+probably prepare some food (chili+bread), cut hair as a break
+i could do some thorough document planning, but i think i'd rather sorta wing this one and next project dive on the management - i still want to focus on getting comfortable navigating godot and its documentation
+	still do some outlining of course, but i don't want to go get a doc and repurpose it
+
