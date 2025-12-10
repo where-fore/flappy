@@ -12,16 +12,17 @@ player_scene = ExtResource("1_o5qli")
 
 [node name="Outer Walls" parent="." instance=ExtResource("2_0wfyh")]
 
-[node name="Obstacle" parent="." instance=ExtResource("3_sugp2")]
-position = Vector2(800, 600)
-scale = Vector2(1, 12)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(360, 358)
+zoom = Vector2(0.8, 0.8)
 
 [node name="Player Spawn" type="Node2D" parent="."]
 position = Vector2(100, 200)
 
 [node name="Obstacle Spawner (Top)" parent="." groups=["Top Spawner"] instance=ExtResource("5_tbgi4")]
+position = Vector2(900, 0)
+obstacle_scene = ExtResource("3_sugp2")
 
 [node name="Obstacle Spawner (Bottom)" parent="." groups=["Bottom Spawner"] instance=ExtResource("5_tbgi4")]
+position = Vector2(900, 720)
+obstacle_scene = ExtResource("3_sugp2")

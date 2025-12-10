@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://romvpv7ssj5x"]
+[gd_scene load_steps=2 format=3 uid="uid://romvpv7ssj5x"]
+
+[ext_resource type="Script" uid="uid://rlxdnikuurwh" path="res://scripts/obstacle_spawner.gd" id="1_vyba0"]
 
 [node name="Obstacle Spawner" type="Node2D"]
+script = ExtResource("1_vyba0")

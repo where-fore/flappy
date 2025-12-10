@@ -2,7 +2,7 @@ extends RigidBody2D
 
 signal destroyed
 
-var spawn_pause_time = 1
+var spawn_pause_time = 0.25
 @onready var original_modulate = $Sprite2D.modulate
 
 var thrust = Vector2(0, -800)

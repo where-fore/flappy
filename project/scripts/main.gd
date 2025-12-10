@@ -3,7 +3,7 @@ extends Node2D
 @export var player_scene: PackedScene
 
 var player_respawn_time = 4
-var player_first_spawn_time = 0.5
+var player_first_spawn_time = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
