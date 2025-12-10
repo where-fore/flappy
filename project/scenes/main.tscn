@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2j8glj8ncw0p"]
 
-[ext_resource type="Texture2D" uid="uid://d3fkatmmy1j2r" path="res://icon.svg" id="1_4dvvg"]
-[ext_resource type="Script" uid="uid://dk25ad258ksn" path="res://scripts/sprite_2d.gd" id="2_rnjyy"]
+[ext_resource type="PackedScene" uid="uid://bqt183ikvb1ni" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cnnqca0vu4a13" path="res://scenes/outer_walls.tscn" id="2_0wfyh"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(122, 116)
-texture = ExtResource("1_4dvvg")
-script = ExtResource("2_rnjyy")
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(100, 100)
+
+[node name="Outer Walls" parent="." instance=ExtResource("2_0wfyh")]
