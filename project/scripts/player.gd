@@ -10,10 +10,10 @@ var should_input = false
 var spawn_pause_time = 0.5
 @onready var original_modulate = $Sprite2D.modulate
 
-var thrust = Vector2(0, -500)
-var clamped_rising_velocity = -300
+var thrust = Vector2(0, -1500)
+var clamped_rising_velocity = -200
 var clamped_falling_velocity = 300
-var anti_bounce_divisor = 1.25
+var anti_bounce_divisor = 1.15
 var anti_bounce_threshold_divisor = 0
 
 
