@@ -3,13 +3,19 @@ extends RigidBody2D
 signal destroyed
 signal scored
 
+var input_cooldown = 0.15
+var input_cooldown_remaining = 0
+var should_input = false
+
 var spawn_pause_time = 0.5
 @onready var original_modulate = $Sprite2D.modulate
 
-var thrust = Vector2(0, -800)
+var thrust = Vector2(0, -500)
+var clamped_velocity = 700
 var anti_bounce_divisor = 1.5
 var anti_bounce_threshold_divisor = 8
-var torque = 0
+
+
 @onready var base_rotation = $Sprite2D.rotation_degrees
 var rotation_divisor = 30
 var rotation_tween = null
@@ -38,8 +44,13 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	if input_cooldown_remaining >= 0: input_cooldown_remaining -= delta
+	
+	if Input.is_action_just_pressed("flap") and input_cooldown_remaining <= 0:
+		should_input = true
+		input_cooldown_remaining = input_cooldown
+	
 	#$Sprite2D.rotation_degrees = base_rotation + linear_velocity.y/rotation_divisor
 	#if not rotation_tween: rotate_player()
 
@@ -64,11 +75,15 @@ func pass_obstacle():
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if Input.is_action_just_pressed("flap"):
+	if linear_velocity.y > clamped_velocity: linear_velocity.y = clamped_velocity
+	if linear_velocity.y < 0 and abs(linear_velocity.y) > abs(clamped_velocity):
+		linear_velocity.y = -clamped_velocity
+	if should_input:
 		if linear_velocity.y < abs(thrust.y/anti_bounce_threshold_divisor):
 			state.apply_central_impulse(thrust/anti_bounce_divisor)
 			#print_debug("anti bounce triggered")
 		else: state.apply_central_impulse(thrust)
+		should_input = false
 
 func rotate_player():
 	var target = $Sprite2D

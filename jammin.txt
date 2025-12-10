@@ -4,14 +4,18 @@ flappy bird jam
 
 required
 ---------------
-have some sort of speed up and/or high-score-time-survived
-
-
-
-
 bugs:
 	sometimes get stuck on the staticbody bottom, seems like inbuilt physics quirk. maybe have the bottom bounce?
 ---------------
+
+-character controller
+	tried holding space and it didn't feel right - would rather a meaty jump on press
+	
+	currently fighting gravity feels bad - pressing space while falling does little when it feels like it should do a lot, and to just go straight requires upkeep(this can feel good but not always)
+	
+
+
+
 
 
 
@@ -40,6 +44,8 @@ setup a group bus script, i have magic strings
 
 polish
 ---------------
+mobile controls for alex :D
+
 better player movement
 	-can clamp y velocity instead of the anti-bounce (and so you can have aggressive gravity without insane dipping)
 	-lots of other tweaking, probably watch a video or browse all my available levers and pull them all
@@ -61,6 +67,8 @@ better pacing
 	save and show highest score?
 	have "levels" or checkpoints - every 5 or so obstacles there's a harder one, then you progress to a harder difficulty?
 		have a "skip levels" checkbox for experience player - on pause menu?
+		
+powerups? pillar smashing?
 
 have art :D
 	hot air baloon and birds/trees?
@@ -68,7 +76,7 @@ have art :D
 	have a defined external colour palette
 	have a background :D maybe noise?
 	
-
+probably a pause menu or feature
 
 have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow
 

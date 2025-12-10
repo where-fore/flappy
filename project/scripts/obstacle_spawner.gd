@@ -5,7 +5,7 @@ extends Node2D
 var obstacle_spawn_interval = 1.5
 @onready var obstacle_spawn_timer = 0.75
 var vertical_screen_size = 720
-var bounding_factor = 0.9
+var bounding_factor = 0.85
 var bottom_bound = vertical_screen_size*bounding_factor
 var top_bound = vertical_screen_size*(1-bounding_factor)
 
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		if obstacle_spawn_timer > 0: obstacle_spawn_timer -= delta
 		if obstacle_spawn_timer <= 0:
 			obstacle_spawn_timer = obstacle_spawn_interval
-			spawn_obstacle(randf_range(180,220))
+			spawn_obstacle(randf_range(110,170))
 
 
 func spawn_obstacle(gap_size:float):
@@ -48,7 +48,6 @@ func move_gap_center():
 	#make sure it's in the play area
 	if position.y < top_bound: position.y = top_bound
 	if position.y > bottom_bound: position.y = bottom_bound
-	print_debug(position.y)
 
 func _on_main_player_died() -> void:
 	should_spawn_obstacles = false
