@@ -22,6 +22,17 @@ window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Obstacle="Obstacle that should destroy the player"
+Player=""
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Obstacles"
+2d_physics/layer_3="Boundaries"
+
 [physics]
 
 common/physics_ticks_per_second=120

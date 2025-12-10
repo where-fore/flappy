@@ -21,6 +21,15 @@ func _process(_delta: float) -> void:
 	#if not rotation_tween: rotate_player()
 
 
+func _on_body_entered(body: Node) -> void:
+	print_debug(body.name)
+
+
+#should be called by the area2D obstacles when they contact the player
+func react_to_obstacle():
+	self.queue_free()
+
+
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if Input.is_action_just_pressed("ui_up"):
 		if linear_velocity.y < abs(thrust.y/anti_bounce_threshold_divisor):
