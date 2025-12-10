@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	print_debug(body.name)
+	print_debug("player touched: " + body.name)
 
 
 #should be called by the area2D obstacles when they contact the player
@@ -41,6 +41,11 @@ func react_to_obstacle():
 func perish():
 	emit_signal("destroyed")
 	self.queue_free()
+
+
+#should be called by the area2D obstacle pass areas when they contact the player
+func pass_obstacle():
+	print_debug("score!")
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:

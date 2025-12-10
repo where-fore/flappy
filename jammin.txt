@@ -5,8 +5,6 @@ flappy bird jam
 required
 ---------------
 
-have spawner point at top and bottom (outside of view)
-	put them in "top" and "bottom groups"
 every few seconds, spawn an obstacle with scaled y
 	decide both obstacles heights together, then give randomly to top or bottom
 		maybe decide gap, not obstacle height?
@@ -14,13 +12,17 @@ every few seconds, spawn an obstacle with scaled y
 		make sure obstacle pivot is at the bottom, not the center
 			maybe a "base node" and then sprite/colliders that grow out?
 		or just scale, then move vertically by half, for now, no need to rotate
-have obstacles always move -x at constant speed
-	destroy when out of viewport by an amount (> outside of view above)
-have player respawn in center left after dying
-	maybe have obstacles stop spawning when dead?
+maybe have obstacles stop spawning when dead?
 
-can zoom camera out for now to test
-add lil colour to outer walls for debug
+
+obstacle spawning:
+	1. obstacle spawn point at center of screen (y=360)
+		this is the center of the gap
+		move this randomly up and down (to margins, 0.25->0.75 probably)
+		spawn obstacles around this center
+		every "obstacle" object has two parts, the top and bottom - and a "gap" variable which determines how far apart they are
+		
+		this spawn point oscillates with its own script, that changes over time to move between top/bottom more quickly. probably non-linear changes, have it jump around a bit
 
 
 
@@ -68,5 +70,7 @@ have outer walls not be solid, maybe have some sort of push-back force, or at le
 rotate with force -> call to update the rotation tween on input and on process, and have it update the tween
 
 spin out death - two tweens, one for rotation(infinite), and one to shrink scale to 0.05; then kill both and player node
+
+could have the individual obstacles bob up and down a little (on higher difficulties?)
 ---------------
 

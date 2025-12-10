@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb22gl3dawnyy"]
+
+[ext_resource type="PackedScene" uid="uid://dp6hjc82g11om" path="res://scenes/obstacle.tscn" id="1_7ffe5"]
+[ext_resource type="Script" uid="uid://bbgu5050tstvt" path="res://scripts/obstacle_container.gd" id="1_mnllb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ffe5"]
+size = Vector2(17, 910.5)
+
+[node name="Obstacle Container" type="Node2D"]
+script = ExtResource("1_mnllb")
+
+[node name="Obstacle (Top)" parent="." instance=ExtResource("1_7ffe5")]
+
+[node name="Obstacle (Bottom)" parent="." instance=ExtResource("1_7ffe5")]
+rotation = 3.1415927
+
+[node name="Pass Check Area" type="Area2D" parent="."]
+position = Vector2(16, 0)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pass Check Area"]
+position = Vector2(8.5, 0)
+shape = SubResource("RectangleShape2D_7ffe5")
+
+[connection signal="body_entered" from="Pass Check Area" to="." method="_on_pass_check_area_body_entered"]

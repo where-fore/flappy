@@ -7,6 +7,7 @@ var player_first_spawn_time = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	if player_scene == null:
 		push_error("Exported variable is null: " + "player_scene")
 	spawn_player(player_first_spawn_time)

@@ -4,17 +4,28 @@
 [ext_resource type="Script" uid="uid://d3xdi0jpf11ce" path="res://scripts/obstacle.gd" id="1_drdry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drdry"]
-size = Vector2(28, 28)
+size = Vector2(26, 409)
 
 [node name="Obstacle" type="Area2D" groups=["Obstacle"]]
-scale = Vector2(1, 12)
 collision_layer = 2
 script = ExtResource("1_drdry")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D (Body)" type="Sprite2D" parent="."]
+position = Vector2(0, -224)
+scale = Vector2(1, 12)
+texture = ExtResource("1_7ukg5")
+
+[node name="Sprite2D (Tip)" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.6431373)
+position = Vector2(0, -16)
 texture = ExtResource("1_7ukg5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -208.5)
 shape = SubResource("RectangleShape2D_drdry")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

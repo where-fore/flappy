@@ -3,7 +3,7 @@ extends Node2D
 @export var obstacle_scene: PackedScene
 
 var obstacle_spawn_interval = 2
-@onready var obstacle_spawn_timer = 0.25
+@onready var obstacle_spawn_timer = 0.75
 var vertical_screen_size = 720
 
 # Called when the node enters the scene tree for the first time.
@@ -17,16 +17,13 @@ func _process(delta: float) -> void:
 	if obstacle_spawn_timer > 0: obstacle_spawn_timer -= delta
 	if obstacle_spawn_timer <= 0:
 		obstacle_spawn_timer = obstacle_spawn_interval
-		spawn_obstacle()
+		spawn_obstacle(randf_range(200,500))
 
 
-func spawn_obstacle():
-	var obstacle = obstacle_scene.instantiate()
-	add_child(obstacle)
-	#var obstacle_height = obstacle.get_node("CollisionShape2D").shape.size.y/2
-	#obstacle.position.x = position.x
-	#obstacle.position.y = position.y - obstacle_height/2
-	if self.is_in_group("Top Spawner"): pass
-	elif self.is_in_group("Bottom Spawner"): pass
-	else:
-		push_error("Obstacle spawner doesn't have a top/bottom grouping")
+func spawn_obstacle(gap:float):
+	var obstacle_group = obstacle_scene.instantiate()
+	add_child(obstacle_group)
+	var top_obstacle = obstacle_group.get_node("Obstacle (Top)")
+	var bottom_obstacle = obstacle_group.get_node("Obstacle (Bottom)")
+	top_obstacle.position.y -= gap/2
+	bottom_obstacle.position.y += gap/2
