@@ -20,7 +20,7 @@ func _on_main_player_scored() -> void:
 
 
 func _on_main_player_died() -> void:
-	change_label(label, str(0)) # Replace with function body.
+	change_label(label, str(0))
 
 
 func change_label(label_to_change:Label, value:String):

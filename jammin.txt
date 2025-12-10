@@ -51,11 +51,24 @@ polish
 better player movement
 	can clamp y velocity instead of the anti-bounce (and so you can have aggressive gravity without insane dipping)
 	lots of other tweaking, probably watch a video or browse all my available levers and pull them all
+	check in on player size, it feels a little big at the moment?
 
 better respawn
 	have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
 	have the player grow in instead of just appearing
 
+better obstacles
+	have the central gap move around, to make little paths
+	have the size of the gap more interesting - normal distribution to a reasonable size? better tuned size?
+
+better pacing
+	zoom out, speed up over time?
+	save and show highest score?
+	have "levels" or checkpoints - every 5 or so obstacles there's a harder one, then you progress to a harder difficulty?
+
+have art :D
+	hot air baloon and birds/trees?
+	
 
 have a background :D maybe noise?
 

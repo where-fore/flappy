@@ -64,7 +64,7 @@ func pass_obstacle():
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("flap"):
 		if linear_velocity.y < abs(thrust.y/anti_bounce_threshold_divisor):
 			state.apply_central_impulse(thrust/anti_bounce_divisor)
 			#print_debug("anti bounce triggered")
