@@ -1,7 +1,7 @@
 extends Node2D
 
-var speed = 250
-var speed_on_death_factor = 2.5
+var speed = 150
+var speed_on_death_factor = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,9 +14,14 @@ func _process(delta: float) -> void:
 
 func speed_up_on_player_death():
 	var tween = create_tween()
+	var duration = 2
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(self, "speed", speed * speed_on_death_factor, 1)
+	tween.tween_property(self, "speed", speed * speed_on_death_factor, duration)
 
 func _on_pass_check_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"): body.pass_obstacle()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

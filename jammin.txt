@@ -15,17 +15,12 @@ bugs:
 
 
 
-could grab parent of each obstacle
-	this means the method gets called twice
-	unless i somehow remove duplicates
-
-could group parents permantently as "obstacle container"
-	seems unnecessary for one function?
-
-
-
-
-
+-consider what i want the difficulty in the game to be, and design around that (re: pong paddles having fixed movement speed)
+	-hard to change direction so i have to plan ahead - generous gaps but ungenerous placement of gaps vertically. can see many obstacles. fighting the random layout with your planning and movement
+		-obstacles slower movement
+		-smaller character
+		-gap system: larger minimum/average gap, lots of variations
+	-easy to change direction, snappy nice movement - but gaps are difficult. fighting the tight corridors with your movement
 
 
 
@@ -34,25 +29,23 @@ could group parents permantently as "obstacle container"
 
 notes
 ---------------
-have a defined external colour palette
+probably should destroy player on hitting the bottom
+and have clouds on the top as collision? or maybe just push player back aggressively (can check for player input and give opposite*1.25 thrust)
 
-pipes: roll 1-100, 20% random placement, 40% in line, large gap; 20% in line, small gap; 20% moving? increase odds of difficulty as you progress?
-
-obstacles: probably have a top sprite and a body sprite, with the body sprite tiling
+hot air baloon: endurance mode where you have limited fuel?
 
 setup a group bus script, i have magic strings
-
-have game zoom out or in as you progress?
 ---------------
 
 
 polish
 ---------------
 better player movement
-	can clamp y velocity instead of the anti-bounce (and so you can have aggressive gravity without insane dipping)
-	lots of other tweaking, probably watch a video or browse all my available levers and pull them all
-	check in on player size, it feels a little big at the moment?
-
+	-can clamp y velocity instead of the anti-bounce (and so you can have aggressive gravity without insane dipping)
+	-lots of other tweaking, probably watch a video or browse all my available levers and pull them all
+	-check in on player size, it feels a little big at the moment?
+	-check in on controls, maybe there should be a cooldown or something on flaps
+	
 better respawn
 	have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
 	have the player grow in instead of just appearing
@@ -60,17 +53,22 @@ better respawn
 better obstacles
 	have the central gap move around, to make little paths
 	have the size of the gap more interesting - normal distribution to a reasonable size? better tuned size?
+	roll 1-100, 20% random placement, 40% in line, large gap; 20% in line, small gap; 20% moving? increase odds of difficulty as you progress?
+	could have the individual obstacles bob up and down a little (on higher difficulties?) - maybe just the sprite?
 
 better pacing
 	zoom out, speed up over time?
 	save and show highest score?
 	have "levels" or checkpoints - every 5 or so obstacles there's a harder one, then you progress to a harder difficulty?
+		have a "skip levels" checkbox for experience player - on pause menu?
 
 have art :D
 	hot air baloon and birds/trees?
 	
+	have a defined external colour palette
+	have a background :D maybe noise?
+	
 
-have a background :D maybe noise?
 
 have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow
 
@@ -78,8 +76,5 @@ rotate with force -> call to update the rotation tween on input and on process, 
 
 spin out death - two tweens, one for rotation(infinite), and one to shrink scale to 0.05; then kill both and player node
 
-maybe have obstacles stop spawning when dead?
-
-could have the individual obstacles bob up and down a little (on higher difficulties?)
 ---------------
 
