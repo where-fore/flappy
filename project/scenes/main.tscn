@@ -14,10 +14,9 @@ player_scene = ExtResource("1_o5qli")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(360, 358)
-zoom = Vector2(0.8, 0.8)
 
 [node name="Player Spawn" type="Node2D" parent="."]
-position = Vector2(100, 200)
+position = Vector2(100, 360)
 
 [node name="Obstacle Spawner (Top)" parent="." groups=["Top Spawner"] instance=ExtResource("5_tbgi4")]
 position = Vector2(900, 0)
