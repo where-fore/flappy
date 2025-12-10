@@ -5,13 +5,27 @@ flappy bird jam
 required
 ---------------
 
-have spawner point at top and bottom
-	if top, spawn.rotate 180
+have spawner point at top and bottom (outside of view)
+	put them in "top" and "bottom groups"
 every few seconds, spawn an obstacle with scaled y
+	decide both obstacles heights together, then give randomly to top or bottom
+		maybe decide gap, not obstacle height?
+	if top, rotate 180
+		make sure obstacle pivot is at the bottom, not the center
+			maybe a "base node" and then sprite/colliders that grow out?
+		or just scale, then move vertically by half, for now, no need to rotate
 have obstacles always move -x at constant speed
+	destroy when out of viewport by an amount (> outside of view above)
+have player respawn in center left after dying
+	maybe have obstacles stop spawning when dead?
 
-have player respawn in center after dying
+can zoom camera out for now to test
+add lil colour to outer walls for debug
 
+
+
+
+have some sort of speed up or high-score-time-survived
 ---------------
 
 
@@ -37,11 +51,15 @@ pipes: roll 1-100, 20% random placement, 40% in line, large gap; 20% in line, sm
 obstacles: probably have a top sprite and a body sprite, with the body sprite tiling
 
 setup a group bus script, i have magic strings
+
+have game zoom out or in as you progress?
 ---------------
 
 
 polish
 ---------------
+have a background :D maybe noise?
+
 have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow
 
 rotate with force -> call to update the rotation tween on input and on process, and have it update the tween

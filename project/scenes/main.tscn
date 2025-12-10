@@ -14,5 +14,8 @@ position = Vector2(100, 100)
 [node name="Outer Walls" parent="." instance=ExtResource("2_0wfyh")]
 
 [node name="Obstacle" parent="." instance=ExtResource("3_sugp2")]
-position = Vector2(100, 400)
-scale = Vector2(1, 4)
+position = Vector2(800, 600)
+scale = Vector2(1, 12)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 358)

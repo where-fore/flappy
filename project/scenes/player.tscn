@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cenqj7ppelnde" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
-size = Vector2(63, 64)
+size = Vector2(52, 52)
 
 [node name="Player" type="RigidBody2D" groups=["Player"]]
 collision_mask = 7
@@ -20,7 +20,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
