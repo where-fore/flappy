@@ -9,12 +9,12 @@ size = Vector2(2352, 205)
 position = Vector2(360, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall"]
-position = Vector2(0, -100)
+position = Vector2(0, -150)
 shape = SubResource("RectangleShape2D_idcti")
 
 [node name="Bottom Wall" type="StaticBody2D" parent="."]
 position = Vector2(360, 720)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
-position = Vector2(0, 100)
+position = Vector2(0, 150)
 shape = SubResource("RectangleShape2D_idcti")

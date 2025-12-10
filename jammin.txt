@@ -5,3 +5,40 @@ probably prepare some food (chili+bread), cut hair as a break
 i could do some thorough document planning, but i think i'd rather sorta wing this one and next project dive on the management - i still want to focus on getting comfortable navigating godot and its documentation
 	still do some outlining of course, but i don't want to go get a doc and repurpose it
 
+
+
+required
+---------------
+have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow
+
+
+---------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+notes
+---------------
+have a defined external colour palette
+
+pipes: roll 1-100, 20% random placement, 40% in line, large gap; 20% in line, small gap; 20% moving? increase odds of difficulty as you progress?
+
+---------------
+
+
+polish
+---------------
+rotate with force -> call to update the rotation tween on input and on process, and have it update the tween
+---------------
+
