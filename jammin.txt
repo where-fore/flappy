@@ -26,6 +26,9 @@ add lil colour to outer walls for debug
 
 
 have some sort of speed up or high-score-time-survived
+
+bugs:
+	sometimes get stuck on the staticbody bottom, seems like inbuilt physics quirk. maybe have the bottom bounce?
 ---------------
 
 

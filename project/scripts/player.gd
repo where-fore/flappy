@@ -1,5 +1,9 @@
 extends RigidBody2D
 
+signal destroyed
+
+var spawn_pause_time = 1
+@onready var original_modulate = $Sprite2D.modulate
 
 var thrust = Vector2(0, -800)
 var anti_bounce_divisor = 1.5
@@ -11,7 +15,11 @@ var rotation_tween = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	freeze = true
+	$Sprite2D.modulate = Color(0,0,1,1)
+	await get_tree().create_timer(spawn_pause_time).timeout
+	$Sprite2D.modulate = original_modulate
+	freeze = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,6 +35,11 @@ func _on_body_entered(body: Node) -> void:
 
 #should be called by the area2D obstacles when they contact the player
 func react_to_obstacle():
+	perish()
+
+
+func perish():
+	emit_signal("destroyed")
 	self.queue_free()
 
 
