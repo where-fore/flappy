@@ -27,6 +27,10 @@ window/stretch/scale_mode="integer"
 Obstacle="Obstacle that should destroy the player"
 Player=""
 
+[gui]
+
+theme/custom="uid://wymfijcko1gs"
+
 [layer_names]
 
 2d_physics/layer_1="Player"

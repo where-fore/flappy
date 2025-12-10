@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal destroyed
+signal scored
 
 var spawn_pause_time = 0.25
 @onready var original_modulate = $Sprite2D.modulate
@@ -45,7 +46,7 @@ func perish():
 
 #should be called by the area2D obstacle pass areas when they contact the player
 func pass_obstacle():
-	print_debug("score!")
+	emit_signal("scored")
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
