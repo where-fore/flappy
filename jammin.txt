@@ -8,29 +8,37 @@ bugs:
 	sometimes get stuck on the staticbody bottom, seems like inbuilt physics quirk. maybe have the bottom bounce?
 ---------------
 
--character controller
-	tried holding space and it didn't feel right - would rather a meaty jump on press
-		maybe have it do a smaller impulse if still holding during cooldown - like celeste/mario jump-hold-height
-	if i'm rising, my press moves me very far, and if i'm falling it doesn't go far at all
+character controller polish, probably after sprites/collisions are more set
+
+art stuff:
+	border on top & bottom (that kill or bounce)
+	background
+	clean up the obstacle trees (top part the birds?)
+	particles on death and stuff would be rad
+
+difficulty system
+	scaling probably, level system?
 	
-	still too floaty going upwards
-	
-	
-	currently fighting gravity feels bad - pressing space while falling does little when it feels like it should do a lot, and to just go straight requires upkeep(this can feel good but not always)
-	
+	variables:
+		-gap size
+		-distance gap moves vertically each obstacle
+		-speed of obstacle movement (reaction time)
+		-speed of obstacle spawn (space/inputs to move vertically)
+		-player/obstacle size (zoom camera?)
+		
+	i could do infinite scaling until it's mathematically impossible, and the goal is to get as far, as many times, as consistently as you can
+		-fast paced
+		-obvious game end
+		-depends on gap spawn luck?
+	i could do bounded scaling (levels)
+		-guaranteed to be doable
+		-not obvious ending
+		-steady progression
+	can play particles or skip to either level
 
 
 
-
-
-
--consider what i want the difficulty in the game to be, and design around that (re: pong paddles having fixed movement speed)
-	-hard to change direction so i have to plan ahead - generous gaps but ungenerous placement of gaps vertically. can see many obstacles. fighting the random layout with your planning and movement
-		-obstacles slower movement
-		-smaller character
-		-gap system: larger minimum/average gap, lots of variations
-	-easy to change direction, snappy nice movement - but gaps are difficult. fighting the tight corridors with your movement
-
+gap issue (sometimes goes off screen up top, never on bottom)
 
 
 
@@ -49,21 +57,18 @@ setup a group bus script, i have magic strings
 
 polish
 ---------------
-mobile controls for alex :D
-
 better player movement
-	-can clamp y velocity instead of the anti-bounce (and so you can have aggressive gravity without insane dipping)
-	-lots of other tweaking, probably watch a video or browse all my available levers and pull them all
-	-check in on player size, it feels a little big at the moment?
+	-can check if velocity.y > 0, if so reduces velocity.y by a percentage (50%)? - it instantly cuts aggressive falls on button press
+	-check in on player size
 	-check in on controls, maybe there should be a cooldown or something on flaps
 	-have that fire tween in and out, size and/or alpha
+	-particle effects/fire on input, could help it feel good
 	
 better respawn
-	have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
-	have the player grow in instead of just appearing
+	-have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
+	-have the player grow in or something, instead of just appearing
 
 better obstacles
-	have the central gap move around, to make little paths
 	have the size of the gap more interesting - normal distribution to a reasonable size? better tuned size?
 	roll 1-100, 20% random placement, 40% in line, large gap; 20% in line, small gap; 20% moving? increase odds of difficulty as you progress?
 	could have the individual obstacles bob up and down a little (on higher difficulties?) - maybe just the sprite?
@@ -76,19 +81,21 @@ better pacing
 		
 powerups? pillar smashing?
 
-have art :D
-	hot air baloon and birds/trees?
-	
-	have a defined external colour palette
+better art :D
+	fix tree to be 3:1
+	have the top be not a tree
+	have the bottom & top trees/clouds or whatever
 	have a background :D maybe noise?
 	
 probably a pause menu or feature
 
 have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow
 
-rotate with force -> call to update the rotation tween on input and on process, and have it update the tween
-
 spin out death - two tweens, one for rotation(infinite), and one to shrink scale to 0.05; then kill both and player node
 
+sound effects and stuff
 ---------------
 
+
+[0.0, -71.0, 139.0, 349.0, 560.0]
+[0.0, -72.0, 139.0, 349.0, 560.0]

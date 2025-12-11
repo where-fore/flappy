@@ -15,11 +15,14 @@ continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 50
 script = ExtResource("1_g2els")
-fire_boost_sprite = ExtResource("2_qhqgy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BodySprite" type="Sprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_g2els")
+
+[node name="BodyWithFireSprite" type="Sprite2D" parent="BodySprite"]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g2els")

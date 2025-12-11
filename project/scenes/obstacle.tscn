@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_drdry"]
 radius = 16.0
-height = 662.0
+height = 684.0
 
 [node name="Obstacle" type="Area2D" groups=["Obstacle"]]
 collision_layer = 2

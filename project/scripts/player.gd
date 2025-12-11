@@ -8,7 +8,6 @@ var input_cooldown_remaining = 0
 var should_input = false
 
 var spawn_pause_time = 0.5
-@onready var original_modulate = $Sprite2D.modulate
 
 var thrust = Vector2(0, -1500)
 var clamped_rising_velocity = -200
@@ -16,8 +15,9 @@ var clamped_falling_velocity = 300
 var anti_bounce_divisor = 1.15
 var anti_bounce_threshold_divisor = 0
 
-@export var fire_boost_sprite: Texture2D
-@onready var regular_sprite = $Sprite2D.texture
+var sprite_change_timer = 0.4
+var sprite_change_timer_remaining = 0
+var should_check_sprites = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,15 +44,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if input_cooldown_remaining >= 0: input_cooldown_remaining -= delta
+	if input_cooldown_remaining > 0: input_cooldown_remaining -= delta
 	
-	if Input.is_action_just_pressed("flap") and input_cooldown_remaining <= 0:
+	if Input.is_action_just_pressed("flap") and input_cooldown_remaining <= 0 and freeze == false:
 		should_input = true
 		input_cooldown_remaining = input_cooldown
 
+	
+	if sprite_change_timer_remaining > 0: sprite_change_timer_remaining -= delta
+	if sprite_change_timer_remaining <= 0:
+		if should_check_sprites == true: tween_sprites(false)
 
-func _on_body_entered(body: Node) -> void:
-	print_debug("player touched: " + body.name)
+func _on_body_entered(_body: Node) -> void:
+	#print_debug("player touched: " + _body.name)
+	pass
 
 
 #should be called by the area2D obstacles when they contact the player
@@ -71,6 +76,7 @@ func pass_obstacle():
 
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	#if an input is in queue:
 	if should_input:
 		
 		#clamp velocities first
@@ -86,11 +92,26 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			#print_debug("anti bounce triggered")
 		else:
 			state.apply_central_impulse(thrust)
-			
-		change_sprite()
+		
+		#change sprites on input
+		tween_sprites(true)
+		sprite_change_timer_remaining = sprite_change_timer
+		should_check_sprites = true
+		
+		#reset queue
 		should_input = false
 
-func change_sprite(wait_time:float = 0.4):
-	$Sprite2D.texture = fire_boost_sprite
-	await get_tree().create_timer(wait_time).timeout
-	$Sprite2D.texture = regular_sprite
+func tween_sprites(fade_in:bool):
+	var tween = create_tween()
+	var target = $BodySprite/BodyWithFireSprite
+	var target_property = "modulate"
+	var duration = 0.25
+	var target_property_value = null
+	tween.set_trans(Tween.TRANS_EXPO)
+	if fade_in:
+		target_property_value = Color(1,1,1,1)
+		tween.set_ease(Tween.EASE_OUT)
+	else:
+		target_property_value = Color(1,1,1,0)
+		tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(target, target_property, target_property_value, duration)

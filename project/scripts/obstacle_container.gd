@@ -1,6 +1,7 @@
 extends Node2D
 
 var speed = 120
+var global_speed_factor = 1.0
 var speed_on_death_factor = 5
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +11,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x -= speed * delta
+	position.x -= speed * delta #* global_speed_factor
+
+
+func set_global_speed_factor(factor:float):
+	global_speed_factor = factor
+
 
 func speed_up_on_player_death():
 	var tween = create_tween()
@@ -24,5 +30,4 @@ func _on_pass_check_area_body_entered(body: Node2D) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	await get_tree().create_timer(1).timeout #let it get away a bit? hacky
 	queue_free()
