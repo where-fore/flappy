@@ -8,7 +8,7 @@ signal update_speed
 #note this doesn't ever check the obstacle sprite or collider or anything
 #just the center where an obstacle gap can be created
 var vertical_screen_size = 720
-var bounding_factor = 0.80
+var bounding_factor = 0.75
 var bottom_bound = vertical_screen_size*bounding_factor
 var top_bound = vertical_screen_size*(1-bounding_factor)
 
