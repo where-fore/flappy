@@ -132,6 +132,8 @@ have outer walls not be solid, maybe have some sort of push-back force, or at le
 spin out death - two tweens, one for rotation(infinite), and one to shrink scale to 0.05; then kill both and player node
 
 sound effects and stuff
+
+could add physical pause button (for mobile and tutorial)
 ---------------
 
 

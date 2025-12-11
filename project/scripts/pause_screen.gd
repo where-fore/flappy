@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var input_cooldown = 0.01
+var input_cooldown = 0.1
 var input_cooldown_remaining = 0
 var fade_tween = null
 @onready var fade_rect = $"Control/ColorRect"
@@ -13,6 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#for whatever reason this stays paused if you close the menu by mashing.. fine by me
 	if input_cooldown_remaining <= 0:
 		if Input.is_action_just_pressed("pause"):
 			if not visible: #pause
@@ -51,6 +52,7 @@ func _process(delta: float) -> void:
 				await fade_tween.finished
 				fade_tween.kill()
 				fade_tween = null
+				
 				visible = false
 				label.modulate = Color(1,1,1,1)
 				#once the fade is done and player is ready
