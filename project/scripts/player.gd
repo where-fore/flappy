@@ -2,12 +2,15 @@ extends RigidBody2D
 
 signal destroyed
 signal scored
+signal show_prompt
+signal start_game
 
 var input_cooldown = 0.1
 var input_cooldown_remaining = 0
 var should_input = false
 
 var spawn_pause_time = 0.5
+var respawn_flash_loops:int = roundi(spawn_pause_time*4)
 
 var thrust = Vector2(0, -1500)
 var clamped_rising_velocity = -200
@@ -21,44 +24,51 @@ var should_check_sprites = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	freeze = true
-	
-	var tween = create_tween()
-	var target = self
-	var target_property = "modulate"
-	var duration = spawn_pause_time/4
-	var original_property = self.modulate
-	var end_property = Color(1,1,1,0.25)
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(target, target_property, end_property, duration)
-	tween.tween_property(target, target_property, original_property, duration)
-	tween.set_loops() #infinite
-	
-	await get_tree().create_timer(spawn_pause_time).timeout
-	tween.kill()
-	self.modulate = original_property
-	
-	freeze = false
+	spawn_in()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if input_cooldown_remaining > 0: input_cooldown_remaining -= delta
 	
-	if Input.is_action_just_pressed("flap") and input_cooldown_remaining <= 0 and freeze == false:
+	if Input.is_action_just_pressed("flap") and (freeze == true):
+		emit_signal("start_game")
+		freeze = false
+	if Input.is_action_just_pressed("flap") and (freeze == false and input_cooldown_remaining <= 0):
 		should_input = true
 		input_cooldown_remaining = input_cooldown
 
 	
 	if sprite_change_timer_remaining > 0: sprite_change_timer_remaining -= delta
 	if sprite_change_timer_remaining <= 0:
-		if should_check_sprites == true: tween_sprites(false)
+		if should_check_sprites == true: animate_fire_sprite(false)
 
 func _on_body_entered(_body: Node) -> void:
 	#print_debug("player touched: " + _body.name)
 	pass
 
+
+func spawn_in():
+	#stop physics
+	freeze = true
+	respawn_flash()
+	emit_signal("show_prompt")
+	#unfreezing and rest handling in _process() to listen for input
+
+
+func respawn_flash():
+	var tween = create_tween()
+	var target = self
+	var target_property = "modulate"
+	var loops = respawn_flash_loops
+	var duration = spawn_pause_time/loops/2 #/2 because there are two properties that use this
+	var original_property = self.modulate
+	var end_property = Color(1,1,1,0.25)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(target, target_property, end_property, duration)
+	tween.tween_property(target, target_property, original_property, duration)
+	tween.set_loops(loops)
 
 #should be called by the area2D obstacles when they contact the player
 func react_to_obstacle():
@@ -94,14 +104,14 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 			state.apply_central_impulse(thrust)
 		
 		#change sprites on input
-		tween_sprites(true)
+		animate_fire_sprite(true)
 		sprite_change_timer_remaining = sprite_change_timer
 		should_check_sprites = true
 		
 		#reset queue
 		should_input = false
 
-func tween_sprites(fade_in:bool):
+func animate_fire_sprite(fade_in:bool):
 	var tween = create_tween()
 	var target = $BodySprite/BodyWithFireSprite
 	var target_property = "modulate"

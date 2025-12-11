@@ -12,7 +12,7 @@ var bounding_factor = 0.75
 var bottom_bound = vertical_screen_size*bounding_factor
 var top_bound = vertical_screen_size*(1-bounding_factor)
 
-var should_spawn_obstacles = true
+var should_spawn_obstacles = false
 
 var obstacle_spawn_timer_first = 0.50 #time before first obstacle spawns, not every
 var obstacle_spawn_timer_remaining = obstacle_spawn_timer_first
@@ -199,5 +199,5 @@ func _on_main_player_died() -> void:
 	reset_difficulty_variables()
 
 
-func _on_main_player_respawned() -> void:
+func _on_main_start_game() -> void:
 	should_spawn_obstacles = true

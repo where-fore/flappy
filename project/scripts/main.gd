@@ -2,7 +2,7 @@ extends Node2D
 
 signal player_scored
 signal player_died
-signal player_respawned
+signal start_game
 @export var player_scene: PackedScene
 
 var player_respawn_time = 2
@@ -33,6 +33,10 @@ func _on_player_destroyed() -> void:
 
 func _on_player_scored() -> void:
 	emit_signal("player_scored")
+	
+	
+func _on_player_start_game() -> void:
+	emit_signal("start_game")
 
 
 func spawn_player(wait_time:float = 0):
@@ -43,4 +47,4 @@ func spawn_player(wait_time:float = 0):
 	call_deferred("add_child", player)
 	player.connect("destroyed", _on_player_destroyed)
 	player.connect("scored", _on_player_scored)
-	emit_signal("player_respawned")
+	player.connect("start_game", _on_player_start_game)

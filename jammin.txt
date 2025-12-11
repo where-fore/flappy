@@ -14,19 +14,14 @@ need to:
 		difficulty: easier at the start, ramping fair difficulty, tune all those sliders
 		make controller more nice: play with removing the negative y velocity, some more play
 		browse other flappys for inspiration
-	have time for dinner
-	some sort of playtesting before release
+	some sort of focused playtesting before release
+		-try as new player, try on phone, try to go as far as i can
 
 
 want to:
 	some particles on death would be nice, good time to put score in center of screen too
 	other random polish as noted below
 	
-
--tune player movement
--tune difficulty
-
-
 
 art stuff:
 	particles on death would be rad
