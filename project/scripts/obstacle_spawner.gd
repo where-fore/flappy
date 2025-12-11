@@ -21,7 +21,7 @@ var speed_factor_maximum = 1.5
 var speed_factor_per_obstacle = 0.05
 var gap_reduction_per_obstacle = 0.005 #percent, so 0.1 is 10% closer gaps
 var gap_range_reduction_per_obstacle = 0.03 #percent, so 0.1 is 10% less variance in gaps
-var obstacle_gap_minimum_minimum = 70.0 #double check this when changing character controller
+var obstacle_gap_minimum_minimum = 110.0 #double check this when changing character controller
 var obstacle_range_gap_minimum = 20.0 #double check when changing above
 var distance_gap_can_jump_per_obstacle = 0.01
 var distance_gap_can_jump_maximum = 1.0 #whole screen, can increase over 1.0 for chance to go to outer bounds
@@ -39,7 +39,7 @@ var speed_factor
 func reset_difficulty_variables():
 	distance_gap_can_jump = 0.6 #1.0 would mean can go from bottom of screen right to top
 	
-	obstacle_gap_minimum = 110.0
+	obstacle_gap_minimum = 160.0
 	obstacle_gap_range = 80.0 #how much higher than the minimum a gap size can be
 	
 	obstacle_spawn_interval = 1.60 #this is clamped in process()

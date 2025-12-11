@@ -41,6 +41,7 @@ plan:
 art stuff:
 	border on top & bottom (that kill or bounce)
 	background
+		have a few tree sprite options, have a background parent randomly(normal distr?) spawn sprite children, of varying heights and sizes and parrallax/layer
 	clean up the obstacle trees (top part the birds?)
 	particles on death and stuff would be rad
 

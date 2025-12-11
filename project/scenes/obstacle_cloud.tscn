@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba1s1jp5kjgxb"]
+
+[ext_resource type="Script" uid="uid://d3xdi0jpf11ce" path="res://scripts/obstacle.gd" id="1_d4nj6"]
+[ext_resource type="Texture2D" uid="uid://cuywmhyqhneu4" path="res://sprites/cloud.png" id="2_d4nj6"]
+
+[node name="Obstacle" type="Area2D" groups=["Obstacle"]]
+collision_layer = 2
+script = ExtResource("1_d4nj6")
+
+[node name="Sprite2D (Body)" type="Sprite2D" parent="."]
+position = Vector2(0, -334)
+scale = Vector2(5, 5)
+texture = ExtResource("2_d4nj6")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -350)
+polygon = PackedVector2Array(78, 350, -76, 350, -75, 275, -34, 135, -26, -140, -80, -196, -78, -318, 76, -319, 79, -181, 27, -152, 47, 156, 77, 289)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
