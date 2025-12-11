@@ -5,10 +5,31 @@ flappy bird jam
 required
 ---------------
 bugs:
-	sometimes get stuck on the staticbody bottom, seems like inbuilt physics quirk. maybe have the bottom bounce?
+----------
+there's some sort of speed level that makes the trees shake and it looks terrible
+-----
+
+need to:
+	make gameplay more fun
+		difficulty: easier at the start, ramping fair difficulty, tune all those sliders
+		make controller more nice: play with removing the negative y velocity, some more play
+		browse other flappys for inspiration
+	art stuff - have a not-tree top, have some sort of bottom/top/background
+	have time for dinner
+	some sort of playtesting before release
+
+
+want to:
+	some particles on death would be nice, good time to put score in center of screen too
+	other random polish as noted below
+	
+plan:
+ 2 hr breaks, 10 or so available:
+ 4 gameplay tuning
+ 2 art tuning
+ 4 other polish (particles, nicer tweens, cool intro/outro)
 ---------------
 
-character controller polish, probably after sprites/collisions are more set
 
 art stuff:
 	border on top & bottom (that kill or bounce)
@@ -16,29 +37,53 @@ art stuff:
 	clean up the obstacle trees (top part the birds?)
 	particles on death and stuff would be rad
 
+
 difficulty system
 	scaling probably, level system?
 	
 	variables:
 		-gap size
 		-distance gap moves vertically each obstacle
-		-speed of obstacle movement (reaction time)
-		-speed of obstacle spawn (space/inputs to move vertically)
+			and the minimum gap movement
+		-speed
+			-speed of obstacle movement (reaction time)
+			-speed of obstacle spawn (space/inputs to move vertically)
+			should likely be related directly, so obstacles are roughly consistently distanced
+		-random ranges of all of the above (variances)
 		-player/obstacle size (zoom camera?)
 		
-	i could do infinite scaling until it's mathematically impossible, and the goal is to get as far, as many times, as consistently as you can
-		-fast paced
-		-obvious game end
-		-depends on gap spawn luck?
-	i could do bounded scaling (levels)
-		-guaranteed to be doable
-		-not obvious ending
-		-steady progression
-	can play particles or skip to either level
+difficulty goals
+	start of game: large gaps, gaps can move most of the screen but not all. slower pace
+	pace speeds up a bit
+	gaps narrow a bit
+	gaps can move across entire screen
+	pace speeds up a bit more
+	gaps narrow a bit
+	gaps are always far apart
+	game speeds and speeds and speeds
+
+
+game flow polish:
+	start of game: have top/bottom move, some wind gusts - and have wait-for-input prompt. then start game
+	end of game: little flash/screen shake, explosion, menu drops/hangs in from the top? elastic tween, on ropes?
+movement:
+
+
+currently:
+	feels a little slow paced/boring. can get to 30 some before any sort of challenge, and dying doesn't really feel like my fault
+		-tighten up colliders (when i have art, probably), they are too forgiving
+		-movement should feel more deliberate (dark soulsy) - each input is too minor right now, it lets you go basically wherever you want with no strategy, so dying feels like you're dumb or made a mistake
+		-start can be a bit harder
+		-gaps are too vertically close together generally
+		-generally should be a bit faster i think
+		
+		
 
 
 
-gap issue (sometimes goes off screen up top, never on bottom)
+
+
+
 
 
 
@@ -67,6 +112,7 @@ better player movement
 better respawn
 	-have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
 	-have the player grow in or something, instead of just appearing
+	-don't start game until you've pressed an input
 
 better obstacles
 	have the size of the gap more interesting - normal distribution to a reasonable size? better tuned size?
@@ -78,7 +124,7 @@ better pacing
 	save and show highest score?
 	have "levels" or checkpoints - every 5 or so obstacles there's a harder one, then you progress to a harder difficulty?
 		have a "skip levels" checkbox for experience player - on pause menu?
-		
+
 powerups? pillar smashing?
 
 better art :D
@@ -97,5 +143,47 @@ sound effects and stuff
 ---------------
 
 
-[0.0, -71.0, 139.0, 349.0, 560.0]
-[0.0, -72.0, 139.0, 349.0, 560.0]
+
+
+
+
+
+
+time 12/11
+
+
+
+
+
+
+
+
+
+
+time 12/10
+9am start
+9:20 done setup (file structure, github page, etc)
+9:53 controller working (never used rigidbodies before)
+10:44 a bunch of rotation per speed polish (felt like character controller polish)
+11:10 objects masked and colliding
+11:30 snack break
+11:50 player respawns, obstacles move
+12:17 obstacles respawn and move
+12:58 obstacles spawn in random positions and give points
+1:15 added font and score label
+1:30 break for shower
+2:30 score and respawn polish (obstacles stop spawning, score resets)
+2:40 break for lamp and text
+2:50 planning, added more controls
+3:16 back from lunch
+3:45 random obstacle spawning
+4:55 character controller polish
+5:05 colour palette browsing
+6:05 drawing
+6:20 cleaning up and added sprites
+6:48 back from din din
+7:42 back from hair cut break
+(begin semi-distracted tinkering)
+10:24 added and tweaked difficulty scaling sliders
+11:24 debugging difficulty and viewport
+12 all done

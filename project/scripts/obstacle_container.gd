@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 120
+var speed = 160
 var global_speed_factor = 1.0
 var speed_on_death_factor = 5
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x -= speed * delta #* global_speed_factor
+	position.x -= speed * delta * global_speed_factor
 
 
 func set_global_speed_factor(factor:float):
