@@ -30,6 +30,13 @@ plan:
  4 other polish (particles, nicer tweens, cool intro/outro)
 ---------------
 
+-add art
+	-fix tree, not-tree-topper. can do background/bottom later
+-tune colliders
+	-player and obstacles. check player size
+-tune player movement
+-tune difficulty
+
 
 art stuff:
 	border on top & bottom (that kill or bounce)
@@ -51,7 +58,8 @@ difficulty system
 			should likely be related directly, so obstacles are roughly consistently distanced
 		-random ranges of all of the above (variances)
 		-player/obstacle size (zoom camera?)
-		
+
+
 difficulty goals
 	start of game: large gaps, gaps can move most of the screen but not all. slower pace
 	pace speeds up a bit
@@ -73,9 +81,6 @@ currently:
 	feels a little slow paced/boring. can get to 30 some before any sort of challenge, and dying doesn't really feel like my fault
 		-tighten up colliders (when i have art, probably), they are too forgiving
 		-movement should feel more deliberate (dark soulsy) - each input is too minor right now, it lets you go basically wherever you want with no strategy, so dying feels like you're dumb or made a mistake
-		-start can be a bit harder
-		-gaps are too vertically close together generally
-		-generally should be a bit faster i think
 		
 		
 

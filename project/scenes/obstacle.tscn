@@ -1,23 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp6hjc82g11om"]
+[gd_scene load_steps=3 format=3 uid="uid://dp6hjc82g11om"]
 
 [ext_resource type="Script" uid="uid://d3xdi0jpf11ce" path="res://scripts/obstacle.gd" id="1_drdry"]
 [ext_resource type="Texture2D" uid="uid://c2xgce4n7jpuj" path="res://sprites/tree.png" id="2_drdry"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_drdry"]
-radius = 16.0
-height = 684.0
 
 [node name="Obstacle" type="Area2D" groups=["Obstacle"]]
 collision_layer = 2
 script = ExtResource("1_drdry")
 
 [node name="Sprite2D (Body)" type="Sprite2D" parent="."]
-position = Vector2(0, -384)
-scale = Vector2(4, 12)
+position = Vector2(0, -336)
+scale = Vector2(5, 7)
 texture = ExtResource("2_drdry")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -350)
-shape = SubResource("CapsuleShape2D_drdry")
+polygon = PackedVector2Array(-40, -285, -10, -322, 15, -322, 40, -258, 50, 348, -50, 348)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
