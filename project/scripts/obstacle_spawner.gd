@@ -27,7 +27,6 @@ var obstacle_gap_absolute_minimum = 110.0 #double check this when changing chara
 var obstacle_gap_range_minimum = 20.0 #double check when changing above
 var distance_gap_can_jump_per_obstacle = 0.01
 var distance_gap_can_jump_maximum = 1.0 #whole screen, can increase over 1.0 for chance to go to outer bounds
-var outer_bound_chance_multiplier = 2 #not a literal multiplier, check the function
 var obstacle_spawn_interval_minimum = 1.5
 var obstacle_spawn_interval_maximum = 3
 
@@ -173,13 +172,9 @@ func update_obstacle_speeds():
 func move_gap_center():
 	var current_pos = position.y
 	
-	var topmost = distance_gap_can_jump*(current_pos - top_bound)
-	topmost -= current_pos
-	if topmost < top_bound*outer_bound_chance_multiplier: topmost = top_bound
+	var topmost = distance_gap_can_jump*(current_pos - top_bound) - current_pos
 	
-	var bottommost = distance_gap_can_jump*(bottom_bound - current_pos)
-	bottommost += current_pos
-	if bottommost > bottom_bound*outer_bound_chance_multiplier: bottommost = bottom_bound
+	var bottommost = distance_gap_can_jump*(bottom_bound - current_pos) + current_pos
 	
 	position.y = randf_range(topmost, bottommost)
 	

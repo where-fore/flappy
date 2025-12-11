@@ -8,25 +8,25 @@
 script = ExtResource("1_cclco")
 
 [node name="Top Wall Piece" parent="." instance=ExtResource("1_3hmt4")]
-position = Vector2(-1070, 0)
+position = Vector2(-1060, 0)
 
 [node name="Top Wall Piece2" parent="." instance=ExtResource("1_3hmt4")]
-position = Vector2(-710, 0)
+position = Vector2(-700, 0)
 
 [node name="Top Wall Piece3" parent="." instance=ExtResource("1_3hmt4")]
-position = Vector2(-350, 0)
+position = Vector2(-340, 0)
 
 [node name="Top Wall Piece4" parent="." instance=ExtResource("1_3hmt4")]
-position = Vector2(-10, 0)
+position = Vector2(-20, 0)
 
 [node name="Bottom Wall Piece" parent="." instance=ExtResource("2_cclco")]
-position = Vector2(-1070, 0)
+position = Vector2(-1060, 0)
 
 [node name="Bottom Wall Piece2" parent="." instance=ExtResource("2_cclco")]
-position = Vector2(-710, 0)
+position = Vector2(-700, 0)
 
 [node name="Bottom Wall Piece3" parent="." instance=ExtResource("2_cclco")]
-position = Vector2(-350, 0)
+position = Vector2(-340, 0)
 
 [node name="Bottom Wall Piece4" parent="." instance=ExtResource("2_cclco")]
-position = Vector2(-10, 0)
+position = Vector2(-20, 0)
