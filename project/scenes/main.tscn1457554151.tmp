@@ -15,15 +15,11 @@ player_scene = ExtResource("1_o5qli")
 [node name="Player Spawn" type="Node2D" parent="."]
 position = Vector2(100, 360)
 
-[node name="Obstacles" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="Obstacle Spawner" parent="Obstacles" instance=ExtResource("5_tbgi4")]
+[node name="Obstacle Spawner" parent="." instance=ExtResource("5_tbgi4")]
 position = Vector2(860, 360)
 obstacle_scene = ExtResource("5_tefeu")
 
 [node name="HUD" parent="." instance=ExtResource("6_tefeu")]
-layer = 10
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -10
@@ -61,14 +57,11 @@ rotation = -0.2617994
 color = Color(0.7372549, 0.42352942, 0.14509805, 1)
 
 [node name="Pause Screen" parent="." instance=ExtResource("9_85g3d")]
-layer = 10
 visible = false
 
 [node name="Scrolling Walls" parent="." instance=ExtResource("7_o6xl0")]
-layer = -5
 
-[connection signal="player_died" from="." to="Obstacles/Obstacle Spawner" method="_on_main_player_died"]
+[connection signal="player_died" from="." to="Obstacle Spawner" method="_on_main_player_died"]
 [connection signal="player_died" from="." to="HUD" method="_on_main_player_died"]
 [connection signal="player_scored" from="." to="HUD" method="_on_main_player_scored"]
-[connection signal="start_game" from="." to="Obstacles/Obstacle Spawner" method="_on_main_start_game"]
-[connection signal="update_speed" from="Obstacles/Obstacle Spawner" to="Scrolling Walls" method="_on_obstacle_spawner_update_speed"]
+[connection signal="start_game" from="." to="Obstacle Spawner" method="_on_main_start_game"]

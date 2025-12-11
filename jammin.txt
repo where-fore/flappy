@@ -9,6 +9,11 @@ bugs:
 the wall spawner thing leaves micro gaps, can fix with a texture rect - shader tile, probably : https://www.youtube.com/watch?v=TMeT541OLPA
 -----
 
+fix micro gaps: 1hr max
+dead particles and stuff: 1.5hr
+
+wind gusts, black outline on walls, playtest
+
 need to:
 	make gameplay more fun
 		difficulty: easier at the start, ramping fair difficulty, tune all those sliders
@@ -31,11 +36,6 @@ art stuff:
 
 juice up death:
 	little flash/screen shake, explosion, partcles, shrink/fade out
-
-
-game flow polish:
-	need a highest score
-		just a label on bottom left hand side
 		
 
 
@@ -133,7 +133,7 @@ spin out death - two tweens, one for rotation(infinite), and one to shrink scale
 
 sound effects and stuff
 
-could add physical pause button (for mobile and tutorial)
+could add physical pause button (for mobile and tutorial) -> 
 ---------------
 
 

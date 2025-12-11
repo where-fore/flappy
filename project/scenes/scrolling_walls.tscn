@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://jejflqefgoke"]
+
+[ext_resource type="Script" uid="uid://ds2mwoaefbf0h" path="res://scripts/scrolling_walls.gd" id="1_1s2yx"]
+[ext_resource type="Texture2D" uid="uid://d3e65w7ld1j0k" path="res://sprites/tree barrier.png" id="1_sm0un"]
+[ext_resource type="Shader" uid="uid://cp1jt8e4lv13s" path="res://shaders/scrolling_walls.gdshader" id="2_vtiky"]
+[ext_resource type="Texture2D" uid="uid://cswei1k1n4d7" path="res://sprites/cloud barrier.png" id="4_cppml"]
+[ext_resource type="Script" uid="uid://d3xdi0jpf11ce" path="res://scripts/obstacle.gd" id="4_s6rxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s2yx"]
+shader = ExtResource("2_vtiky")
+shader_parameter/speed = 0.1
+shader_parameter/scroll_offset = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cppml"]
+size = Vector2(720, 57)
+
+[node name="Scrolling Walls" type="CanvasLayer"]
+script = ExtResource("1_1s2yx")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top Wall" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_1s2yx")
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -540.0
+offset_bottom = 18.0
+grow_horizontal = 2
+scale = Vector2(4, 4)
+texture = ExtResource("4_cppml")
+stretch_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Control/Top Wall"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("4_s6rxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Top Wall/Area2D"]
+position = Vector2(360, 28.5)
+shape = SubResource("RectangleShape2D_cppml")
+
+[node name="Bottom Wall" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_1s2yx")
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = -540.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture = ExtResource("1_sm0un")
+stretch_mode = 1
+
+[node name="Area2D" type="Area2D" parent="Control/Bottom Wall"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("4_s6rxy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Bottom Wall/Area2D"]
+position = Vector2(360, 42)
+shape = SubResource("RectangleShape2D_cppml")
+
+[connection signal="body_entered" from="Control/Top Wall/Area2D" to="Control/Top Wall/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Control/Bottom Wall/Area2D" to="Control/Bottom Wall/Area2D" method="_on_body_entered"]
