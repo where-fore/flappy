@@ -29,10 +29,15 @@ art stuff:
 	some wind gusts would be neat
 	maybe remove black outline on background walls? to be less distracting
 
+juice up death:
+	little flash/screen shake, explosion, partcles, shrink/fade out
+
 
 game flow polish:
-	start of game: wait-for-input prompt. then start game
-	end of game: little flash/screen shake, explosion, menu drops/hangs in from the top? elastic tween, on ropes?
+	need a highest score
+		end of game menu: menu drops/hangs in from the top? elastic tween, on ropes?
+		just a label on bottom left hand side
+		
 
 
 

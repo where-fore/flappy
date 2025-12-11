@@ -29,3 +29,16 @@ theme_override_font_sizes/font_size = 28
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Highest Score Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.99
+anchor_right = 0.01
+anchor_bottom = 0.99
+offset_top = -30.0
+offset_right = 40.0
+grow_vertical = 0
+text = "Best: 201"
+vertical_alignment = 1
