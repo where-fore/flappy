@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2j8glj8ncw0p"]
+[gd_scene load_steps=10 format=3 uid="uid://c2j8glj8ncw0p"]
 
 [ext_resource type="Script" uid="uid://dsb0q1caxb1e7" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bqt183ikvb1ni" path="res://scenes/player.tscn" id="1_o5qli"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjjejticdelx" path="res://scenes/hud.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://k5xrhuohxc7e" path="res://scenes/wall_container.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cjvktn8bbjl0l" path="res://scenes/wall_piece_top.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://c54ds55vhcyx0" path="res://scenes/pause_screen.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://h1s2pxjes2ox" path="res://scenes/wall_piece_bottom.tscn" id="9_choun"]
 
 [node name="Main" type="Node2D"]
@@ -61,6 +62,8 @@ color = Color(0.7372549, 0.42352942, 0.14509805, 1)
 position = Vector2(1080, 0)
 top_wall_scene = ExtResource("8_85g3d")
 bottom_wall_scene = ExtResource("9_choun")
+
+[node name="Pause Screen" parent="." instance=ExtResource("9_85g3d")]
 
 [connection signal="player_died" from="." to="Obstacle Spawner" method="_on_main_player_died"]
 [connection signal="player_died" from="." to="HUD" method="_on_main_player_died"]

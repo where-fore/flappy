@@ -35,7 +35,6 @@ juice up death:
 
 game flow polish:
 	need a highest score
-		end of game menu: menu drops/hangs in from the top? elastic tween, on ropes?
 		just a label on bottom left hand side
 		
 
@@ -100,11 +99,13 @@ polish
 ---------------
 better player movement
 	-can check if velocity.y > 0, if so reduces velocity.y by a percentage (50%)? - it instantly cuts aggressive falls on button press
-	
+		
+probably a pause menu or feature
+
 better respawn
 	-have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
 	-have the player grow in or something, instead of just appearing
-	-don't start game until you've pressed an input
+	-end of game menu: menu drops/hangs in from the top? elastic tween, on ropes?
 
 better obstacles
 	have the size of the gap more interesting - normal distribution to a reasonable size? better tuned size?
@@ -125,7 +126,6 @@ better art :D
 	have the bottom & top trees/clouds or whatever
 	have a background :D maybe noise?
 	
-probably a pause menu or feature
 
 have outer walls not be solid, maybe have some sort of push-back force, or at least an indicator that you're off screen like an arrow
 
