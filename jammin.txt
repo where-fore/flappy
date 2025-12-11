@@ -30,20 +30,16 @@ plan:
  4 other polish (particles, nicer tweens, cool intro/outro)
 ---------------
 
--add art
-	-fix tree, not-tree-topper. can do background/bottom later
--tune colliders
-	-player and obstacles. check player size
+-add moving&killing top/bottom
 -tune player movement
 -tune difficulty
 
 
 art stuff:
 	border on top & bottom (that kill or bounce)
-	background
 		have a few tree sprite options, have a background parent randomly(normal distr?) spawn sprite children, of varying heights and sizes and parrallax/layer
-	clean up the obstacle trees (top part the birds?)
 	particles on death and stuff would be rad
+	more interesting background?
 
 
 difficulty system

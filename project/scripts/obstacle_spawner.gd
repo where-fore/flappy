@@ -26,6 +26,9 @@ var obstacle_range_gap_minimum = 20.0 #double check when changing above
 var distance_gap_can_jump_per_obstacle = 0.01
 var distance_gap_can_jump_maximum = 1.0 #whole screen, can increase over 1.0 for chance to go to outer bounds
 var outer_bound_chance_multiplier = 2 #not a literal multiplier, check the function
+var obstacle_spawn_interval_minimum = 1.5
+var obstacle_spawn_interval_maximum = 3
+
 
 #difficulty variables that change and should be reset
 var distance_gap_can_jump
@@ -42,8 +45,8 @@ func reset_difficulty_variables():
 	obstacle_gap_minimum = 160.0
 	obstacle_gap_range = 80.0 #how much higher than the minimum a gap size can be
 	
-	obstacle_spawn_interval = 1.60 #this is clamped in process()
-	obstacle_spawn_interval_variance = 0.25
+	obstacle_spawn_interval = 2.00 #this is clamped in process()
+	obstacle_spawn_interval_variance = 0.20
 	
 	obstacles_spawned_count = 0.0 #can change this to start at certain difficulties
 	
@@ -65,8 +68,11 @@ func _process(delta: float) -> void:
 		if obstacle_spawn_timer_remaining <= 0:
 			spawn_obstacle()
 			#reset the timer, with some variance
-			var minimum_interval = max(1.25, (obstacle_spawn_interval-obstacle_spawn_interval_variance)/speed_factor)
-			var maximum_interval = min(2.25, (obstacle_spawn_interval+obstacle_spawn_interval_variance)/speed_factor)
+			var attempted_minimum_interval = (obstacle_spawn_interval-obstacle_spawn_interval_variance) / speed_factor
+			var minimum_interval = max(obstacle_spawn_interval_minimum, attempted_minimum_interval)
+			var attempted_maximum_interval = (obstacle_spawn_interval + obstacle_spawn_interval_variance) / speed_factor
+			var maximum_interval = min(obstacle_spawn_interval_maximum, attempted_maximum_interval)
+			
 			var spawn_timer = randf_range(minimum_interval, maximum_interval)
 			obstacle_spawn_timer_remaining = spawn_timer
 
