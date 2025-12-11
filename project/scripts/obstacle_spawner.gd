@@ -20,11 +20,11 @@ var obstacle_spawn_timer_remaining = obstacle_spawn_timer_first
 #difficulty variables
 #static difficulty variables
 var speed_factor_maximum = 1.5
-var speed_factor_per_obstacle = 0.05
+var speed_factor_per_obstacle = 0.025
 var gap_reduction_per_obstacle = 0.005 #percent, so 0.1 is 10% closer gaps
 var gap_range_reduction_per_obstacle = 0.03 #percent, so 0.1 is 10% less variance in gaps
-var obstacle_gap_minimum_minimum = 110.0 #double check this when changing character controller
-var obstacle_range_gap_minimum = 20.0 #double check when changing above
+var obstacle_gap_absolute_minimum = 110.0 #double check this when changing character controller
+var obstacle_gap_range_minimum = 20.0 #double check when changing above
 var distance_gap_can_jump_per_obstacle = 0.01
 var distance_gap_can_jump_maximum = 1.0 #whole screen, can increase over 1.0 for chance to go to outer bounds
 var outer_bound_chance_multiplier = 2 #not a literal multiplier, check the function
@@ -111,7 +111,7 @@ func update_difficulty():
 	debug_string.append_array(["obstacle_gap_minimum", "was", obstacle_gap_minimum])
 	
 	var attempted_gap_minimum = roundf(obstacle_gap_minimum / (1 + (obstacles_spawned_count)*gap_reduction_per_obstacle))
-	obstacle_gap_minimum = max(obstacle_gap_minimum_minimum, attempted_gap_minimum)
+	obstacle_gap_minimum = max(obstacle_gap_absolute_minimum, attempted_gap_minimum)
 	
 	debug_string.append_array(["obstacle_gap_minimum", "is now", obstacle_gap_minimum])
 	print(" ".join(debug_string))
@@ -121,7 +121,7 @@ func update_difficulty():
 	debug_string.append_array(["obstacle_gap_range", "was", obstacle_gap_range])
 	
 	var attempted_gap_range_minimum = roundf(obstacle_gap_range / (1 + (obstacles_spawned_count)*gap_range_reduction_per_obstacle))
-	obstacle_gap_range = max(obstacle_range_gap_minimum, attempted_gap_range_minimum)
+	obstacle_gap_range = max(obstacle_gap_range_minimum, attempted_gap_range_minimum)
 	
 	debug_string.append_array(["obstacle_gap_range", "is now", obstacle_gap_range])
 	print(" ".join(debug_string))

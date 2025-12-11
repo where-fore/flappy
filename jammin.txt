@@ -6,7 +6,7 @@ required
 ---------------
 bugs:
 ----------
-there's some sort of speed level that makes the trees shake and it looks terrible
+the wall spawner thing leaves micro gaps, can fix with a texture rect - shader tile, probably : https://www.youtube.com/watch?v=TMeT541OLPA
 -----
 
 need to:
@@ -14,7 +14,6 @@ need to:
 		difficulty: easier at the start, ramping fair difficulty, tune all those sliders
 		make controller more nice: play with removing the negative y velocity, some more play
 		browse other flappys for inspiration
-	art stuff - have a not-tree top, have some sort of bottom/top/background
 	have time for dinner
 	some sort of playtesting before release
 
@@ -23,23 +22,25 @@ want to:
 	some particles on death would be nice, good time to put score in center of screen too
 	other random polish as noted below
 	
-plan:
- 2 hr breaks, 10 or so available:
- 4 gameplay tuning
- 2 art tuning
- 4 other polish (particles, nicer tweens, cool intro/outro)
----------------
 
--add moving&killing top/bottom
 -tune player movement
 -tune difficulty
 
 
+
 art stuff:
-	border on top & bottom (that kill or bounce)
-		have a few tree sprite options, have a background parent randomly(normal distr?) spawn sprite children, of varying heights and sizes and parrallax/layer
-	particles on death and stuff would be rad
-	more interesting background?
+	particles on death would be rad
+	more interesting background would also be rad
+	some wind gusts would be neat
+	maybe remove black outline on background walls? to be less distracting
+
+
+game flow polish:
+	start of game: wait-for-input prompt. then start game
+	end of game: little flash/screen shake, explosion, menu drops/hangs in from the top? elastic tween, on ropes?
+
+
+
 
 
 difficulty system
@@ -68,10 +69,6 @@ difficulty goals
 	game speeds and speeds and speeds
 
 
-game flow polish:
-	start of game: have top/bottom move, some wind gusts - and have wait-for-input prompt. then start game
-	end of game: little flash/screen shake, explosion, menu drops/hangs in from the top? elastic tween, on ropes?
-movement:
 
 
 currently:
@@ -93,12 +90,9 @@ currently:
 
 notes
 ---------------
-probably should destroy player on hitting the bottom
-and have clouds on the top as collision? or maybe just push player back aggressively (can check for player input and give opposite*1.25 thrust)
-
 hot air baloon: endurance mode where you have limited fuel?
 
-setup a group bus script, i have magic strings
+setup a "group" bus script, i have magic strings
 ---------------
 
 
@@ -106,10 +100,6 @@ polish
 ---------------
 better player movement
 	-can check if velocity.y > 0, if so reduces velocity.y by a percentage (50%)? - it instantly cuts aggressive falls on button press
-	-check in on player size
-	-check in on controls, maybe there should be a cooldown or something on flaps
-	-have that fire tween in and out, size and/or alpha
-	-particle effects/fire on input, could help it feel good
 	
 better respawn
 	-have score show in center of screen or something for a bit while you respawn (it's easy to miss and it clears quickly)
