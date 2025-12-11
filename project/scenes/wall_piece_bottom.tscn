@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://h1s2pxjes2ox"]
+
+[ext_resource type="Script" uid="uid://dpcwgen8h3cxm" path="res://scripts/wall_piece.gd" id="1_34kmj"]
+[ext_resource type="Texture2D" uid="uid://d3e65w7ld1j0k" path="res://sprites/tree barrier.png" id="1_as4b8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ktk7"]
+size = Vector2(361, 65)
+
+[node name="Bottom Wall Piece" type="Area2D" groups=["Bottom Wall"]]
+collision_layer = 2
+script = ExtResource("1_34kmj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 684)
+scale = Vector2(4, 4)
+texture = ExtResource("1_as4b8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 687.5)
+shape = SubResource("RectangleShape2D_2ktk7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(160, 470)
+rect = Rect2(0, 0, 20, 250)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

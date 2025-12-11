@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = 160
+var speed = 160 #consider changing the wall speed to the same
 var global_speed_factor = 1.0
 var speed_on_death_factor = 5
 

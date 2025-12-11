@@ -2,11 +2,13 @@ extends Node2D
 
 @export var obstacle_scene: PackedScene
 
+signal update_speed
+
 #farthest out i can put an obstacle and still be on screen
 #note this doesn't ever check the obstacle sprite or collider or anything
 #just the center where an obstacle gap can be created
 var vertical_screen_size = 720
-var bounding_factor = 0.85
+var bounding_factor = 0.80
 var bottom_bound = vertical_screen_size*bounding_factor
 var top_bound = vertical_screen_size*(1-bounding_factor)
 
@@ -163,6 +165,9 @@ func update_obstacle_speeds():
 	#do stuff to each parent
 	for parent in obstacle_parents.values():
 		parent.set_global_speed_factor(speed_factor)
+	
+	#upgdate the background wall speeds too
+	emit_signal("update_speed", speed_factor)
 
 
 func move_gap_center():

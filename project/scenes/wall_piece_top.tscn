@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjvktn8bbjl0l"]
+
+[ext_resource type="Texture2D" uid="uid://cswei1k1n4d7" path="res://sprites/cloud barrier.png" id="1_fndls"]
+[ext_resource type="Script" uid="uid://dpcwgen8h3cxm" path="res://scripts/wall_piece.gd" id="1_w1acx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ktk7"]
+size = Vector2(361, 56)
+
+[node name="Top Wall Piece" type="Area2D" groups=["Top Wall"]]
+collision_layer = 2
+script = ExtResource("1_w1acx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 36)
+scale = Vector2(4, 4)
+texture = ExtResource("1_fndls")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_2ktk7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(160, 0)
+rect = Rect2(0, 0, 20, 250)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

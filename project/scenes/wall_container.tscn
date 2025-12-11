@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://k5xrhuohxc7e"]
+
+[ext_resource type="PackedScene" uid="uid://cjvktn8bbjl0l" path="res://scenes/wall_piece_top.tscn" id="1_3hmt4"]
+[ext_resource type="Script" uid="uid://b27h47aoeqtel" path="res://scripts/wall_container.gd" id="1_cclco"]
+[ext_resource type="PackedScene" uid="uid://h1s2pxjes2ox" path="res://scenes/wall_piece_bottom.tscn" id="2_cclco"]
+
+[node name="Wall Container" type="Node2D"]
+script = ExtResource("1_cclco")
+
+[node name="Top Wall Piece" parent="." instance=ExtResource("1_3hmt4")]
+position = Vector2(-1070, 0)
+
+[node name="Top Wall Piece2" parent="." instance=ExtResource("1_3hmt4")]
+position = Vector2(-710, 0)
+
+[node name="Top Wall Piece3" parent="." instance=ExtResource("1_3hmt4")]
+position = Vector2(-350, 0)
+
+[node name="Top Wall Piece4" parent="." instance=ExtResource("1_3hmt4")]
+position = Vector2(-10, 0)
+
+[node name="Bottom Wall Piece" parent="." instance=ExtResource("2_cclco")]
+position = Vector2(-1070, 0)
+
+[node name="Bottom Wall Piece2" parent="." instance=ExtResource("2_cclco")]
+position = Vector2(-710, 0)
+
+[node name="Bottom Wall Piece3" parent="." instance=ExtResource("2_cclco")]
+position = Vector2(-350, 0)
+
+[node name="Bottom Wall Piece4" parent="." instance=ExtResource("2_cclco")]
+position = Vector2(-10, 0)
