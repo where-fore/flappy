@@ -41,7 +41,7 @@ func _on_player_start_game() -> void:
 
 func spawn_player(wait_time:float = 0):
 	if wait_time > 0: await get_tree().create_timer(wait_time).timeout
-	
+
 	var player = player_scene.instantiate()
 	player.position = ($"Player Spawn".position)
 	call_deferred("add_child", player)

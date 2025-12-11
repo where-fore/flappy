@@ -1,6 +1,10 @@
 extends CanvasLayer
 
 var starting_scroll_speed = 0.315
+var parallax_factor = 0.8
+
+
+var current_speed_factor = 1
 var current_speed = starting_scroll_speed
 var scrolling_offset = 0.0
 #this effects both walls since they share the shader
@@ -16,9 +20,13 @@ func _process(delta: float) -> void:
 
 
 func set_shader_scroll_speed(target_speed:float):
-	current_speed = target_speed
-	scroll_shader_material.set_shader_parameter("speed", current_speed)
+	scroll_shader_material.set_shader_parameter("speed", target_speed)
 
 
 func _on_obstacle_spawner_update_speed(speed_factor) -> void:
-	set_shader_scroll_speed(current_speed*speed_factor)
+	if current_speed_factor != speed_factor:
+		var diff = speed_factor/current_speed_factor
+		var diff_after_parallax = ((diff-1)*parallax_factor)+1
+		current_speed *= diff_after_parallax
+		current_speed_factor = speed_factor
+		set_shader_scroll_speed(current_speed)
