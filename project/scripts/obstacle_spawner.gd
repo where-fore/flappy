@@ -3,6 +3,7 @@ extends Node2D
 @export var obstacle_scene: PackedScene
 
 signal update_speed
+signal player_died_pause
 
 #farthest out i can put an obstacle and still be on screen
 #note this doesn't ever check the obstacle sprite or collider or anything
@@ -195,6 +196,9 @@ func _on_main_player_died() -> void:
 		obstacle_parents[parent.get_instance_id()] = parent
 	for parent in obstacle_parents.values():
 		parent.speed_up_on_player_death()
+		
+	#tell the background to pause then speed up, too
+	emit_signal("player_died_pause")
 	
 	reset_difficulty_variables()
 

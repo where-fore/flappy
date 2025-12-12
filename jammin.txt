@@ -6,13 +6,13 @@ required
 ---------------
 bugs:
 ----------
-the wall spawner thing leaves micro gaps, can fix with a texture rect - shader tile, probably : https://www.youtube.com/watch?v=TMeT541OLPA
------
+wind gusts, black outline on walls, playtest
 
-fix micro gaps: 1hr max
 dead particles and stuff: 1.5hr
 
-wind gusts, black outline on walls, playtest
+
+
+
 
 need to:
 	make gameplay more fun

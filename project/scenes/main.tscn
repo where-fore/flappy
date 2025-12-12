@@ -69,6 +69,8 @@ layer = -5
 
 [connection signal="player_died" from="." to="Obstacles/Obstacle Spawner" method="_on_main_player_died"]
 [connection signal="player_died" from="." to="HUD" method="_on_main_player_died"]
+[connection signal="player_respawned" from="." to="Scrolling Walls" method="_on_main_player_respawned"]
 [connection signal="player_scored" from="." to="HUD" method="_on_main_player_scored"]
 [connection signal="start_game" from="." to="Obstacles/Obstacle Spawner" method="_on_main_start_game"]
+[connection signal="player_died_pause" from="Obstacles/Obstacle Spawner" to="Scrolling Walls" method="_on_obstacle_spawner_player_died_pause"]
 [connection signal="update_speed" from="Obstacles/Obstacle Spawner" to="Scrolling Walls" method="_on_obstacle_spawner_update_speed"]

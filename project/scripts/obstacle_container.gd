@@ -5,6 +5,8 @@ var global_speed_factor = 1.0
 var on_death_transition_duration = 1
 var speed_on_death_factor = 10
 
+var pause_obstacles = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,7 +14,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x -= speed * delta * global_speed_factor
+	if not pause_obstacles:
+		position.x -= speed * delta * global_speed_factor
 
 
 func set_global_speed_factor(factor:float):
@@ -20,6 +23,11 @@ func set_global_speed_factor(factor:float):
 
 
 func speed_up_on_player_death():
+	#hold a second for impact frame
+	pause_obstacles = true
+	await get_tree().create_timer(1).timeout
+	pause_obstacles = false
+	
 	var tween = create_tween()
 	var duration = on_death_transition_duration
 	tween.set_trans(Tween.TRANS_QUAD)

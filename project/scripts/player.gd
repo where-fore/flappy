@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal destroyed
+signal stop_game
 signal scored
 signal show_prompt
 signal start_game
@@ -11,6 +12,9 @@ var should_input = false
 
 var spawn_pause_time = 0.5
 var respawn_flash_loops:int = roundi(spawn_pause_time*4)
+var starting_freeze = false
+@onready var collider = $CollisionPolygon2D
+@onready var sprite = $BodySprite
 
 var thrust = Vector2(0, -1500)
 var clamped_rising_velocity = -200
@@ -31,10 +35,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if input_cooldown_remaining > 0: input_cooldown_remaining -= delta
 	
-	if Input.is_action_just_pressed("flap") and (freeze == true):
-		emit_signal("start_game")
-		freeze = false
-	if Input.is_action_just_pressed("flap") and (freeze == false and input_cooldown_remaining <= 0):
+	if Input.is_action_just_pressed("flap") and (starting_freeze == true):
+		start_player()
+		
+	if Input.is_action_just_pressed("flap") and (starting_freeze == false and input_cooldown_remaining <= 0):
 		should_input = true
 		input_cooldown_remaining = input_cooldown
 
@@ -47,10 +51,16 @@ func _on_body_entered(_body: Node) -> void:
 	#print_debug("player touched: " + _body.name)
 	pass
 
+func start_player():
+	emit_signal("start_game")
+	freeze = false
+	starting_freeze = false
+	collider.disabled = false
 
 func spawn_in():
 	#stop physics
 	freeze = true
+	starting_freeze = true
 	respawn_flash()
 	emit_signal("show_prompt")
 	#unfreezing and rest handling in _process() to listen for input
@@ -72,11 +82,40 @@ func respawn_flash():
 
 #should be called by the area2D obstacles when they contact the player
 func react_to_obstacle():
-	perish()
+	emit_signal("stop_game")
+	call_deferred("perish")
 
 
 func perish():
-	emit_signal("destroyed")
+	#animations
+	#elastic size increase then decrease
+		#spiralling down?
+	#stop gravity and more collisions
+	freeze = true
+	collider.disabled = true
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.set_ease(Tween.EASE_OUT)
+	var original_scale = sprite.scale  
+	tween.tween_property(sprite, "scale", original_scale*2, 1)
+	await tween.finished
+	
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	var duration = 3
+	tween.tween_property(sprite, "scale", Vector2(0.05,0.05), duration)
+	
+	var rotation_tween = create_tween()
+	rotation_tween.set_trans(Tween.TRANS_LINEAR)
+	rotation_tween.tween_property(sprite, "rotation", 20*PI, 4)
+	
+	#i want only the first part of this ease transition
+	await get_tree().create_timer(duration).timeout
+	tween.kill()
+	
+	#finally, destroy what's left
+	emit_signal("destroyed") #sent to main.gd
 	self.queue_free()
 
 
